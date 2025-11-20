@@ -1,0 +1,96 @@
+<div class="max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg border">
+
+    <!-- Header -->
+    <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900">Inicio de Sesión</h2>
+        <p class="text-gray-600 text-sm mt-1">
+            Ingresa tus credenciales para continuar.
+        </p>
+    </div>
+
+    <!-- Usuario -->
+    <div class="mb-4">
+        <label class="text-sm text-gray-700">Usuario</label>
+        <input
+            type="text"
+            [(ngModel)]="user"
+            (input)="validarUsuario()"
+            class="w-full p-3 rounded-lg border-2 transition-all"
+            [class.border-gray-300]="estadoUsuario() === 'neutral'"
+            [class.border-red-500]="estadoUsuario() === 'error'"
+            [class.bg-red-50]="estadoUsuario() === 'error'"
+            [class.border-green-500]="estadoUsuario() === 'ok'"
+            [class.bg-green-50]="estadoUsuario() === 'ok'"
+            placeholder="tu_usuario"
+        >
+
+        <!-- Feedback -->
+        @if (estadoUsuario() === 'error') {
+        <p class="text-sm text-red-600 mt-1">
+            El usuario debe tener al menos 3 caracteres.
+        </p>
+        }
+    </div>
+
+    <!-- Contraseña -->
+    <div class="mb-4 relative">
+        <label class="text-sm text-gray-700">Contraseña</label>
+        <input
+            [type]="verPass() ? 'text' : 'password'"
+            [(ngModel)]="password"
+            class="w-full p-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-blue-500"
+            placeholder="Escribe tu contraseña"
+        >
+
+        <!-- Botón de mostrar contraseña -->
+        <button
+            (click)="toggleVerPass()"
+            class="absolute right-3 top-10 text-gray-600 hover:text-gray-800"
+        >
+            {{ verPass() ? 'Ocultar' : 'Ver' }}
+        </button>
+    </div>
+
+    <!-- Botón principal -->
+    <button
+        (click)="login()"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"
+    >
+        Ingresar
+    </button>
+
+    <!-- Mensaje de error con diagnóstico y soluciones -->
+    @if (error()) {
+    <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="flex items-start space-x-3">
+            <span class="text-2xl">⚠️</span>
+            <div>
+                <p class="font-semibold text-red-800">No pudimos iniciar sesión</p>
+                <p class="text-sm text-red-700 mt-1">
+                    Verifica tu usuario y contraseña. Asegúrate de que estén escritos correctamente.
+                </p>
+
+                <ul class="list-disc ml-5 text-sm text-red-700 mt-2 space-y-1">
+                    <li>Comprueba que no haya espacios al inicio o final.</li>
+                    <li>Revisa si tienes activado el bloqueo de mayúsculas.</li>
+                    <li>Si olvidaste tu contraseña, puedes restaurarla.</li>
+                </ul>
+
+                <!-- Acciones de recuperación -->
+                <div class="flex space-x-3 mt-4">
+                    <button
+                        (click)="reintentar()"
+                        class="px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                    >
+                        Reintentar
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 text-gray-700">
+                        Recuperar Cuenta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+</div>

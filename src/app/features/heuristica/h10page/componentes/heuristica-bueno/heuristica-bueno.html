@@ -1,0 +1,113 @@
+<div class="max-w-3xl mx-auto p-8 bg-white rounded-xl shadow-lg border">
+
+    <!-- Header -->
+    <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900 tracking-tight">
+            Subir Documento
+        </h2>
+        <p class="text-gray-600 mt-1">
+            Selecciona un archivo y revisa las instrucciones si necesitas ayuda.
+        </p>
+    </div>
+
+    <input
+        type="file"
+        (change)="validarArchivo($event)"
+        class="w-full p-3 border rounded-lg mb-4"
+    />
+
+    <!-- Sugerencias según el estado -->
+    @if (estado() === 'error-tipo') {
+    <div class="p-3 bg-red-50 border border-red-200 text-red-700 rounded mb-4">
+        Solo se permiten archivos PDF o DOCX.
+    </div>
+    }
+
+    @if (estado() === 'error-peso') {
+    <div class="p-3 bg-yellow-50 border border-yellow-200 text-yellow-700 rounded mb-4">
+        El archivo supera el tamaño máximo permitido (10 MB).
+    </div>
+    }
+
+    <!-- Botón principal -->
+    <button
+        [disabled]="!archivoValido()"
+        class="w-full py-3 rounded-lg font-semibold transition-colors"
+        [class.bg-blue-600]="archivoValido()"
+        [class.text-white]="archivoValido()"
+        [class.hover:bg-blue-700]="archivoValido()"
+        [class.bg-gray-300]="!archivoValido()"
+        [class.text-gray-500]="!archivoValido()"
+        [class.cursor-not-allowed]="!archivoValido()"
+    >
+        Subir Archivo
+    </button>
+
+    <!-- Panel de ayuda contextual -->
+    <div class="mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-gray-800 text-lg">
+                Ayuda y Documentación
+            </h3>
+
+            <button
+                (click)="toggleAyuda()"
+                class="text-sm text-blue-600 hover:underline"
+            >
+                {{ ayudaVisible() ? 'Ocultar' : 'Mostrar' }}
+            </button>
+        </div>
+
+        @if (ayudaVisible()) {
+        <div class="mt-4 space-y-6">
+
+            <!-- Paso a paso -->
+            <div>
+                <h4 class="font-semibold text-gray-800">Cómo subir tu archivo</h4>
+                <ol class="ml-6 list-decimal text-sm text-gray-700 mt-2 space-y-1">
+                    <li>Haz clic en el cuadro para seleccionar un archivo.</li>
+                    <li>Asegúrate de que el formato sea PDF o DOCX.</li>
+                    <li>Verifica que su peso sea menor a 10 MB.</li>
+                    <li>Haz clic en “Subir Archivo”.</li>
+                </ol>
+            </div>
+
+            <!-- FAQs -->
+            <div>
+                <h4 class="font-semibold text-gray-800">Preguntas Frecuentes</h4>
+                <div class="mt-2 space-y-3">
+
+                    <div class="p-3 bg-white border rounded">
+                        <p class="font-medium text-gray-800">¿Qué formatos se permiten?</p>
+                        <p class="text-sm text-gray-700">PDF y DOCX.</p>
+                    </div>
+
+                    <div class="p-3 bg-white border rounded">
+                        <p class="font-medium text-gray-800">¿Cuál es el tamaño máximo?</p>
+                        <p class="text-sm text-gray-700">10 MB.</p>
+                    </div>
+
+                    <div class="p-3 bg-white border rounded">
+                        <p class="font-medium text-gray-800">¿Qué hago si el archivo no carga?</p>
+                        <p class="text-sm text-gray-700">
+                            Revisa tu conexión o intenta usar otro navegador.
+                            También puedes contactar a soporte si el problema persiste.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Enlace de soporte -->
+            <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p class="text-sm text-blue-900">
+                    ¿Aún necesitas ayuda?
+                    Contáctanos en soporte@ejemplo.com
+                </p>
+            </div>
+
+        </div>
+        }
+    </div>
+
+</div>

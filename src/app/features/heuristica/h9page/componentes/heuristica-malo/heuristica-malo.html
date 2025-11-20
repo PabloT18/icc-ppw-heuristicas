@@ -1,0 +1,30 @@
+<div class="max-w-md mx-auto p-6 bg-white rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Inicio de Sesión</h2>
+
+    <input
+        type="text"
+        placeholder="Usuario"
+        [(ngModel)]="user"
+        class="w-full p-2 border rounded mb-4"
+    >
+
+    <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        class="w-full p-2 border rounded mb-4"
+    >
+
+    <button
+        (click)="login()"
+        class="w-full bg-blue-500 text-white p-2 rounded"
+    >
+        Ingresar
+    </button>
+
+    <!-- Error técnico y sin ayuda -->
+    @if (error()) {
+    <div class="mt-4 p-3 bg-red-200 text-red-900 rounded">
+        ERROR 401: BAD CREDENTIALS
+    </div>
+    }
