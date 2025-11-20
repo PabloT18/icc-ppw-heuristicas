@@ -5,8 +5,9 @@ import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-h1-page',
-  imports: [HeaderHeuristicaComponent, CommonModule, RouterLinkActive],
+  imports: [HeaderHeuristicaComponent],
   templateUrl: './h1-page.html',
+  styleUrl: './h1-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class H1Page {

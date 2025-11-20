@@ -39,7 +39,9 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/icc-ppw-heuristicas/",
+              "deployUrl": "/icc-ppw-heuristicas/"
             },
             "development": {
               "optimization": false,

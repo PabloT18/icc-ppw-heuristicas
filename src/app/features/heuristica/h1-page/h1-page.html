@@ -74,12 +74,10 @@
                     (click)="uploadFile()"
                     [disabled]="!selectedFile || isUploading()"
                     class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center"
-                    [ngClass]="{
-                  'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer': selectedFile && !isUploading() && !uploadComplete(),
-                  'bg-gray-300 text-gray-500 cursor-not-allowed': !selectedFile,
-                  'bg-orange-500 text-white cursor-not-allowed': isUploading(),
-                  'bg-green-500 text-white': uploadComplete()
-                }"
+                    [class.btn-ready]="selectedFile && !isUploading() && !uploadComplete()"
+                    [class.btn-disabled]="!selectedFile"
+                    [class.btn-uploading]="isUploading()"
+                    [class.btn-complete]="uploadComplete()"
                 >
 
                     @if (isUploading()) {
@@ -123,10 +121,8 @@
                     <div class="w-full bg-gray-200 rounded-full h-2">
                         <div
                             class="h-2 rounded-full transition-all duration-300 ease-out"
-                            [ngClass]="{
-                        'bg-gradient-to-r from-blue-400 to-blue-600': progress() < 100,
-                        'bg-gradient-to-r from-green-400 to-green-600': progress() === 100
-                      }"
+                            [class.progress-gradient]="progress() < 100"
+                            [class.complete-gradient]="progress() === 100"
                             [style.width.%]="progress()"
                         >
                         </div>
@@ -137,12 +133,10 @@
                 <!-- Mensajes de estado detallados -->
                 <div
                     class="mt-4 p-3 rounded-lg"
-                    [ngClass]="{
-                'bg-blue-50 border border-blue-200': currentStatus() === 'preparing',
-                'bg-orange-50 border border-orange-200': currentStatus() === 'uploading', 
-                'bg-green-50 border border-green-200': currentStatus() === 'completed',
-                'bg-gray-50 border border-gray-200': currentStatus() === 'idle'
-              }"
+                    [class.status-preparing]="currentStatus() === 'preparing'"
+                    [class.status-uploading]="currentStatus() === 'uploading'"
+                    [class.status-completed]="currentStatus() === 'completed'"
+                    [class.status-idle]="currentStatus() === 'idle'"
                 >
                     <div class="flex items-center text-sm">
                         <span class="mr-2">{{ getStatusIcon() }}</span>
