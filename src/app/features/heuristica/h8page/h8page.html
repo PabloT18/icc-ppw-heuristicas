@@ -1,5 +1,61 @@
 <app-header-heuristica
     numeroHeuristica="8"
-    titulo="Visibilidad del estado del sistema"
-    concepto="El sistema debe siempre mantener informados a los usuarios sobre lo que está ocurriendo, mediante una retroalimentación apropiada dentro de un tiempo razonable."
+    titulo="Diseño Estético y Minimalista"
+    concepto="Presentar únicamente la información relevante para la tarea actual, evitando sobrecargar visualmente al usuario. Interfaces limpias, ordenadas y con jerarquía clara mejoran la comprensión y reducen la carga cognitiva."
 ></app-header-heuristica>
+
+
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+                    <ul class="list-disc list-inside ">
+
+                        <li> Colores excesivos y sin jerarquía.</li>
+                        <li> Tipografías inconsistentes y subrayados innecesarios.</li>
+                        <li> Demasiada información visible al mismo tiempo.</li>
+                        <li> Repetición de botones con la misma función.</li>
+                        <li> de enfoque: no está claro qué debe hacer el usuario.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-red-200">
+
+                <app-heuristica-malo></app-heuristica-malo>
+            </div>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+
+
+                    <ul class="list-disc list-inside ">
+                        <li>Jerarquía visual clara.</li>
+                        <li>Limpieza y eliminación de elementos irrelevantes.</li>
+                        <li>Estilo minimalista con TailwindCSS moderno.</li>
+                        <li>Uso de espacios, colores neutros y acciones principales destacadas.</li>
+                        <li>Secciones colapsables para evitar sobrecargar al usuario.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+
+
+                <app-heuristica-bueno></app-heuristica-bueno>
+            </div>
+        </section>
+
+    </div>
+</div>

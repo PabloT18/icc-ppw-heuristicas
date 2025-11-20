@@ -2,7 +2,7 @@
 
 Uaa aplicación web educativa construida con **Angular 20+** que demuestra las **10 Heurísticas de Usabilidad de Jakob Nielsen** a través de ejemplos prácticos comparativos.
 
-Pagina desplegada: [LINK](https://pablot18.github.io/icc-ppw-heuristicas/heuristica/visibilidad-estado-sistema)
+Pagina desplegada: [LINK](https://pablot18.github.io/icc-ppw-heuristicas/)
 
 ## Sobre el Proyecto
 
@@ -146,7 +146,7 @@ pnpm run deploy
 ```
 
 ### 4. Verificar Despliegue
-- Tu aplicación estará disponible en: `https://pablot18.github.io/icc-ppw-heuristicas/heuristica/visibilidad-estado-sistema`
+- Tu aplicación estará disponible en: `https://pablot18.github.io/icc-ppw-heuristicas/`
 - GitHub Actions procesará el despliegue automáticamente
 - Verifica en la pestaña **Settings → Pages** de tu repositorio
 

@@ -1,0 +1,24 @@
+<div class="p-6 max-w-lg mx-auto bg-white rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Redactar Mensaje</h2>
+
+    <!-- Interfaz rígida, misma experiencia para todos -->
+    <textarea
+        [(ngModel)]="mensaje"
+        class="w-full h-32 p-3 border rounded mb-4"
+        placeholder="Escribe tu mensaje aquí..."
+    >
+      </textarea>
+
+    <!-- Solo un botón, sin atajos, sin opciones avanzadas -->
+    <button
+        (click)="enviar()"
+        class="w-full bg-blue-500 text-white p-3 rounded"
+    >
+        Enviar Mensaje
+    </button>
+
+    <!-- Sin historial, sin plantillas, sin autocompletado -->
+    <div class="mt-6 text-gray-600 text-sm">
+        No hay opciones avanzadas disponibles.
+    </div>
+</div>

@@ -3,3 +3,59 @@
     titulo="Flexibilidad y eficiencia de uso"
     concepto="Los aceleradores —invisibles para el usuario novato— pueden acelerar la interacción para el usuario experto de manera que el sistema pueda atender a usuarios inexpertos y expertos."
 ></app-header-heuristica>
+
+
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+                    <ul class="list-disc list-inside ">
+                        <li>No existen atajos ni funciones avanzadas para usuarios expertos.</li>
+                        <li>No permite configurar la experiencia (tema, tamaño del texto, plantillas).</li>
+                        <li>No ofrece autocompletado, historial o sugerencias.</li>
+                        <li>Es completamente rígido: todos los usuarios reciben la misma interfaz.</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-red-200">
+
+                <app-heuristica-malo></app-heuristica-malo>
+            </div>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+
+
+                    <ul class="list-disc list-inside ">
+                        <li>Modo rápido de envío con atajos de teclado (Ctrl + Enter).</li>
+                        <li>Plantillas rápidas para usuarios avanzados.</li>
+                        <li>Autoguardado automático.</li>
+                        <li>Configuración de tamaño de texto.</li>
+                        <li>Vista simplificada o avanzada según preferencia del usuario.</li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+
+
+                <app-heuristica-bueno></app-heuristica-bueno>
+            </div>
+        </section>
+
+    </div>
+</div>

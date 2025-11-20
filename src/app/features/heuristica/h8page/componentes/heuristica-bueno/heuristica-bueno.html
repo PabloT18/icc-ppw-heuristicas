@@ -1,0 +1,85 @@
+<div class="p-8 max-w-3xl mx-auto bg-white rounded-xl shadow-lg border">
+
+    <!-- Header limpio -->
+    <div class="mb-6">
+        <h2 class="text-3xl font-bold text-gray-900 tracking-tight">
+            Panel de Usuario
+        </h2>
+        <p class="text-gray-600 mt-1">
+            Gestiona tu información de forma clara y organizada.
+        </p>
+    </div>
+
+    <!-- Tarjeta principal -->
+    <div class="space-y-4">
+
+        <!-- Información esencial -->
+        <div class="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+            <h3 class="text-lg font-semibold text-gray-800">Información Básica</h3>
+            <p class="text-sm text-gray-600 mt-1">
+                Solo los datos relevantes aparecen aquí.
+            </p>
+
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm text-gray-700">Nombre</label>
+                    <input
+                        type="text"
+                        class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Ingrese su nombre"
+                    >
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-700">Email</label>
+                    <input
+                        type="email"
+                        class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="correo@ejemplo.com"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección avanzada colapsable -->
+        <div class="border border-gray-200 rounded-lg">
+            <button
+                (click)="toggleAvanzado()"
+                class="w-full text-left px-4 py-3 bg-white hover:bg-gray-50 flex justify-between items-center"
+            >
+                <span class="font-medium text-gray-800">Opciones Avanzadas</span>
+                <span class="text-xl">{{ avanzado() ? '−' : '+' }}</span>
+            </button>
+
+            <!-- Solo aparece si se activa -->
+            @if (avanzado()) {
+            <div class="p-4 bg-gray-50 border-t border-gray-200 space-y-3">
+                <div>
+                    <label class="text-sm text-gray-700">Tema</label>
+                    <select class="w-full mt-1 p-2 border rounded-lg">
+                        <option>Claro</option>
+                        <option>Oscuro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-sm text-gray-700">Notificaciones</label>
+                    <select class="w-full mt-1 p-2 border rounded-lg">
+                        <option>Activadas</option>
+                        <option>Desactivadas</option>
+                    </select>
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
+
+    <!-- Botón principal -->
+    <div class="mt-8">
+        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            Guardar Cambios
+        </button>
+    </div>
+
+</div>
