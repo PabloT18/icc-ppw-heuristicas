@@ -1,0 +1,38 @@
+<app-header-heuristica
+    numeroHeuristica="2"
+    titulo="Correspondencia entre el Mundo Real y el Sistema"
+    concepto="El sistema debe hablar el idioma de los usuarios, con palabras, frases y conceptos familiares para el usuario, en lugar de términos orientados al sistema. Seguir las convenciones del mundo real, haciendo que la información aparezca en un orden natural y lógico."
+>
+</app-header-heuristica>
+
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+                <p class="text-gray-600 text-center text-sm">Terminología técnica que confunde al usuario</p>
+            </div>
+
+            <app-heuristica-malo></app-heuristica-malo>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+                <p class="text-gray-600 text-center text-sm">Lenguaje familiar y natural para el usuario</p>
+            </div>
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+
+
+                <app-heuristica-bueno></app-heuristica-bueno>
+            </div>
+
+        </section>
+
+    </div>
+</div>

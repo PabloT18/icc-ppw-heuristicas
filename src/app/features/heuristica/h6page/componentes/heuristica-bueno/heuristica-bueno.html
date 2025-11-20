@@ -1,0 +1,122 @@
+<div class="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-lg border">
+    <div class="flex items-center mb-6">
+        <span class="text-2xl mr-3">🍕</span>
+        <h2 class="text-xl font-semibold">Configurar tu Pizza</h2>
+    </div>
+
+    <!-- Selección visual de tamaño -->
+    <div class="mb-6">
+        <h3 class="text-lg font-medium mb-3">Tamaño</h3>
+        <div class="grid grid-cols-4 gap-3">
+            @for (sizeOption of sizeOptions; track sizeOption.value) {
+            <button
+                (click)="selectSize(sizeOption.value)"
+                class="flex flex-col items-center p-4 border-2 rounded-lg transition-all"
+                [class.border-blue-500]="selectedSize() === sizeOption.value"
+                [class.bg-blue-50]="selectedSize() === sizeOption.value"
+                [class.border-gray-200]="selectedSize() !== sizeOption.value"
+                [class.hover:border-gray-300]="selectedSize() !== sizeOption.value"
+            >
+                <span class="text-2xl mb-2">{{ sizeOption.icon }}</span>
+                <span class="font-medium">{{ sizeOption.name }}</span>
+                <span class="text-sm text-gray-600">{{ sizeOption.price }}</span>
+            </button>
+            }
+        </div>
+    </div>
+
+    <!-- Selección visual de masa -->
+    <div class="mb-6">
+        <h3 class="text-lg font-medium mb-3">Tipo de Masa</h3>
+        <div class="grid grid-cols-3 gap-3">
+            @for (crustOption of crustOptions; track crustOption.value) {
+            <button
+                (click)="selectCrust(crustOption.value)"
+                class="flex flex-col items-center p-4 border-2 rounded-lg transition-all"
+                [class.border-blue-500]="selectedCrust() === crustOption.value"
+                [class.bg-blue-50]="selectedCrust() === crustOption.value"
+                [class.border-gray-200]="selectedCrust() !== crustOption.value"
+                [class.hover:border-gray-300]="selectedCrust() !== crustOption.value"
+            >
+                <span class="text-2xl mb-2">{{ crustOption.icon }}</span>
+                <span class="font-medium">{{ crustOption.name }}</span>
+                <span class="text-sm text-gray-600 text-center">{{ crustOption.description }}</span>
+            </button>
+            }
+        </div>
+    </div>
+
+    <!-- Ingredientes con iconos visuales -->
+    <div class="mb-6">
+        <h3 class="text-lg font-medium mb-3">
+            Ingredientes
+            <span class="text-sm font-normal text-gray-600">({{ selectedToppings().length }} seleccionados)</span>
+        </h3>
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-3">
+            @for (topping of toppingOptions; track topping.value) {
+            <button
+                (click)="toggleTopping(topping.value)"
+                class="flex flex-col items-center p-3 border-2 rounded-lg transition-all relative"
+                [class.border-green-500]="isSelected(topping.value)"
+                [class.bg-green-50]="isSelected(topping.value)"
+                [class.border-gray-200]="!isSelected(topping.value)"
+                [class.hover:border-gray-300]="!isSelected(topping.value)"
+            >
+
+                @if (isSelected(topping.value)) {
+                <div
+                    class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs">✓</span>
+                </div>
+                }
+
+                <span class="text-xl mb-1">{{ topping.icon }}</span>
+                <span class="text-xs font-medium text-center">{{ topping.name }}</span>
+                <span class="text-xs text-gray-600">+${{ topping.price }}</span>
+            </button>
+            }
+        </div>
+    </div>
+
+    <!-- Resumen visual -->
+    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+        <h4 class="font-semibold mb-2">Resumen de tu Pizza:</h4>
+        <div class="space-y-1 text-sm">
+            <div class="flex justify-between">
+                <span>Tamaño: {{ getSelectedSizeName() }}</span>
+                <span>${{ getSizePrice() }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Masa: {{ getSelectedCrustName() }}</span>
+                <span>Incluido</span>
+            </div>
+            @if (selectedToppings().length > 0) {
+            <div class="flex justify-between">
+                <span>Ingredientes ({{ selectedToppings().length }}):</span>
+                <span>${{ getToppingsPrice() }}</span>
+            </div>
+            <div class="text-xs text-gray-600 ml-4">
+                {{ getSelectedToppingsNames() }}
+            </div>
+            }
+            <hr class="border-gray-300">
+            <div class="flex justify-between font-semibold">
+                <span>Total:</span>
+                <span>${{ getTotal() }}</span>
+            </div>
+        </div>
+    </div>
+
+    <button
+        [disabled]="!canOrder()"
+        class="w-full py-3 px-6 rounded-lg font-semibold transition-colors"
+        [class.bg-green-600]="canOrder()"
+        [class.hover:bg-green-700]="canOrder()"
+        [class.text-white]="canOrder()"
+        [class.bg-gray-300]="!canOrder()"
+        [class.text-gray-500]="!canOrder()"
+        [class.cursor-not-allowed]="!canOrder()"
+    >
+        🛒 Agregar al Carrito - ${{ getTotal() }}
+    </button>
+</div>

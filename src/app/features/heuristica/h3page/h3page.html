@@ -1,0 +1,50 @@
+<app-header-heuristica
+    numeroHeuristica="3"
+    titulo="Control y Libertad del Usuario"
+    concepto="Los usuarios a menudo eligen funciones por error y necesitarán una 'salida de emergencia' claramente marcada para salir del estado no deseado sin tener que pasar por un diálogo extenso. Soporte deshacer y rehacer."
+></app-header-heuristica>
+
+
+
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+                <div class="text-gray-600 text-center text-sm">
+                    <ul class="list-disc list-inside ">
+
+                        <li>No hay opciones de deshacer/rehacer para el editor</li>
+                        <li>El modal bloquea completamente al usuario sin opción de cancelar</li>
+                        <li>No hay forma de salir del proceso una vez iniciado</li>
+                        <li>Falta control granular sobre las acciones del sistema</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-red-200">
+
+                <app-heuristica-malo></app-heuristica-malo>
+            </div>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+                <p class="text-gray-600 text-center text-sm">Lenguaje familiar y natural para el usuario</p>
+            </div>
+
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+
+
+                <app-heuristica-bueno></app-heuristica-bueno>
+            </div>
+        </section>
+
+    </div>
+</div>

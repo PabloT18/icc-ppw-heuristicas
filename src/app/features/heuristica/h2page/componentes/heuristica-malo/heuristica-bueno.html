@@ -1,0 +1,77 @@
+<div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+    <div class="flex items-center mb-6 justify-center">
+        <span class="text-2xl mr-3">🗂️</span>
+        <h3 class="text-xl font-semibold">Mi Escritorio</h3>
+    </div>
+
+    <!-- Acciones familiares con iconos del mundo real -->
+    <div class="space-y-3">
+        <button
+            class="flex items-center w-full p-4 bg-blue-50 hover:bg-blue-100 text-left rounded-lg border border-blue-200 transition-colors"
+            (click)="executeOperation('Abrir mi escritorio')"
+        >
+            <span class="text-2xl mr-4">🖥️</span>
+            <div>
+                <div class="font-medium">Abrir Escritorio</div>
+                <div class="text-sm text-gray-600">Ver todos mis archivos y carpetas</div>
+            </div>
+        </button>
+
+        <button
+            class="flex items-center w-full p-4 bg-green-50 hover:bg-green-100 text-left rounded-lg border border-green-200 transition-colors"
+            (click)="executeOperation('Crear nueva carpeta')"
+        >
+            <span class="text-2xl mr-4">📁</span>
+            <div>
+                <div class="font-medium">Nueva Carpeta</div>
+                <div class="text-sm text-gray-600">Organizar archivos en una carpeta</div>
+            </div>
+        </button>
+
+        <button
+            class="flex items-center w-full p-4 bg-yellow-50 hover:bg-yellow-100 text-left rounded-lg border border-yellow-200 transition-colors"
+            (click)="executeOperation('Copiar archivos al portapapeles')"
+        >
+            <span class="text-2xl mr-4">📋</span>
+            <div>
+                <div class="font-medium">Copiar</div>
+                <div class="text-sm text-gray-600">Copiar archivos al portapapeles</div>
+            </div>
+        </button>
+
+        <button
+            class="flex items-center w-full p-4 bg-purple-50 hover:bg-purple-100 text-left rounded-lg border border-purple-200 transition-colors"
+            (click)="executeOperation('Guardar documento')"
+        >
+            <span class="text-2xl mr-4">💾</span>
+            <div>
+                <div class="font-medium">Guardar</div>
+                <div class="text-sm text-gray-600">Guardar cambios en el documento</div>
+            </div>
+        </button>
+
+        <button
+            class="flex items-center w-full p-4 bg-red-50 hover:bg-red-100 text-left rounded-lg border border-red-200 transition-colors"
+            (click)="executeOperation('Mover a la papelera')"
+        >
+            <span class="text-2xl mr-4">🗑️</span>
+            <div>
+                <div class="font-medium">Eliminar</div>
+                <div class="text-sm text-gray-600">Mover archivos a la papelera</div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Feedback en lenguaje natural -->
+    @if (lastOperation()) {
+    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <div class="flex items-center">
+            <span class="text-xl mr-3">✅</span>
+            <div>
+                <div class="font-medium text-blue-900">¡Listo!</div>
+                <div class="text-sm text-blue-700">{{ lastOperation() }}</div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

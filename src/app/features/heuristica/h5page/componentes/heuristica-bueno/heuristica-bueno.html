@@ -1,0 +1,80 @@
+<div class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-lg border">
+    <div class="flex items-center mb-6">
+        <span class="text-2xl mr-3">🏦</span>
+        <h2 class="text-xl font-semibold">Transferencia Bancaria</h2>
+    </div>
+
+    <form (ngSubmit)="transfer()">
+        <!-- Campo cuenta con validación en tiempo real -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+                Número de Cuenta Destino
+            </label>
+            <input
+                type="text"
+                [(ngModel)]="accountNumber"
+                name="account"
+                (input)="validateAccount()"
+                placeholder="0000-0000-0000-0000"
+                maxlength="19"
+                class="w-full p-3 border-2 rounded-lg transition-colors"
+                [class.input-valid]="accountValid() === true"
+                [class.input-invalid]="accountValid() === false"
+                [class.input-neutral]="accountValid() === null"
+            >
+
+            @if (accountValid() === false) {
+            <div class="mt-2 flex items-center text-red-600 text-sm">
+                <span class="mr-2">⚠️</span>
+                El número de cuenta debe tener 16 dígitos
+            </div>
+            }
+        </div>
+
+        <!-- Campo monto con validaciones -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+                Monto a Transferir
+            </label>
+            <div class="relative">
+                <span class="absolute left-3 top-3 text-gray-500">$</span>
+                <input
+                    type="number"
+                    [(ngModel)]="amount"
+                    name="amount"
+                    (input)="validateAmount()"
+                    placeholder="0.00"
+                    min="0.01"
+                    max="10000"
+                    step="0.01"
+                    class="w-full p-3 pl-8 border-2 rounded-lg"
+                >
+            </div>
+
+            @if (amount > 5000) {
+            <div class="mt-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div class="flex items-center text-yellow-800 text-sm">
+                    <span class="mr-2">🚨</span>
+                    <strong>Monto Alto:</strong> Requiere confirmación adicional
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Botón con protección -->
+        <button
+            type="submit"
+            [disabled]="!readyToTransfer() || processing()"
+            class="w-full p-4 rounded-lg font-semibold transition-all duration-200"
+            [class.btn-ready]="readyToTransfer() && !processing()"
+            [class.btn-disabled]="!readyToTransfer() || processing()"
+        >
+
+            @if (processing()) {
+            Procesando...
+            } @else {
+            🔒 Confirmar Transferencia
+            }
+        </button>
+    </form>
+</div>

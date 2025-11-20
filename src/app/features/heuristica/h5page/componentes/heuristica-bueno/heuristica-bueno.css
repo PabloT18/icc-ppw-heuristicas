@@ -1,0 +1,39 @@
+/* Estados de validación para inputs */
+.input-valid {
+    border-color: rgb(34 197 94);
+    /* green-500 */
+    background-color: rgb(240 253 244);
+    /* green-50 */
+}
+
+.input-invalid {
+    border-color: rgb(239 68 68);
+    /* red-500 */
+    background-color: rgb(254 242 242);
+    /* red-50 */
+}
+
+.input-neutral {
+    border-color: rgb(209 213 219);
+    /* gray-300 */
+}
+
+/* Estados del botón */
+.btn-ready {
+    background-color: rgb(37 99 235);
+    /* blue-600 */
+    color: white;
+}
+
+.btn-ready:hover {
+    background-color: rgb(29 78 216);
+    /* blue-700 */
+}
+
+.btn-disabled {
+    background-color: rgb(209 213 219);
+    /* gray-300 */
+    color: rgb(107 114 128);
+    /* gray-500 */
+    cursor: not-allowed;
+}

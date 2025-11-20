@@ -1,0 +1,156 @@
+<app-header-heuristica
+    numeroHeuristica="1"
+    titulo="Visibilidad del Estado del Sistema"
+    concepto="El sistema debe mantener a los usuarios informados sobre lo que está ocurriendo, proporcionando retroalimentación apropiada dentro de un tiempo razonable. Los usuarios nunca deben preguntarse qué está pasando en el sistema."
+>
+</app-header-heuristica>
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+                <p class="text-gray-600 text-center text-sm">Sin feedback visual ni indicadores de estado</p>
+            </div>
+
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-red-200">
+                <h3 class="text-xl mb-4 text-center font-semibold">Subir Archivo</h3>
+
+                <!-- Sin indicadores de estado -->
+                <input
+                    type="file"
+                    (change)="onFileSelect1($event)"
+                    class="mb-4 block w-full text-sm text-gray-500"
+                >
+
+                <!-- Botón sin feedback visual -->
+                <button
+                    (click)="uploadFile1()"
+                    class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors"
+                >
+                    Subir
+                </button>
+
+                <!-- Sin mostrar progreso -->
+                <div class="mt-4 p-3 bg-gray-100 rounded">
+                    <p class="text-sm text-gray-600">Resultado aparecerá aquí...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+                <p class="text-gray-600 text-center text-sm">Con feedback visual completo y estados claros</p>
+            </div>
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+                <div class="flex items-center mb-4 justify-center">
+                    <span class="text-2xl mr-3">📁</span>
+                    <h3 class="text-xl font-semibold">Subir Archivo</h3>
+                </div>
+
+                <!-- Selector de archivo con estado visual -->
+                <div class="mb-4">
+                    <input
+                        type="file"
+                        (change)="onFileSelect($event)"
+                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    >
+
+                    @if (selectedFile) {
+                    <div class="mt-2 flex items-center text-sm text-green-600">
+                        <span class="mr-2">✅</span>
+                        Archivo seleccionado: {{ selectedFile.name }}
+                    </div>
+                    }
+                </div>
+
+                <!-- Botón con estados visuales dinámicos -->
+                <button
+                    (click)="uploadFile()"
+                    [disabled]="!selectedFile || isUploading()"
+                    class="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center"
+                    [ngClass]="{
+                  'bg-blue-600 hover:bg-blue-700 text-white cursor-pointer': selectedFile && !isUploading() && !uploadComplete(),
+                  'bg-gray-300 text-gray-500 cursor-not-allowed': !selectedFile,
+                  'bg-orange-500 text-white cursor-not-allowed': isUploading(),
+                  'bg-green-500 text-white': uploadComplete()
+                }"
+                >
+
+                    @if (isUploading()) {
+                    <!-- Spinner animado -->
+                    <svg
+                        class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                    >
+                        <circle
+                            class="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="4"
+                        ></circle>
+                        <path
+                            class="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                    </svg>
+                    Subiendo... {{ progress() }}%
+                    } @else if (uploadComplete()) {
+                    <span class="mr-2">✅</span>
+                    ¡Subido Exitosamente!
+                    } @else {
+                    <span class="mr-2">📤</span>
+                    {{ selectedFile ? 'Subir Archivo' : 'Selecciona un archivo' }}
+                    }
+                </button>
+
+                <!-- Barra de progreso visible -->
+                @if (isUploading() || uploadComplete()) {
+                <div class="mt-4">
+                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                        <span>Progreso de subida</span>
+                        <span>{{ progress() }}%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                            class="h-2 rounded-full transition-all duration-300 ease-out"
+                            [ngClass]="{
+                        'bg-gradient-to-r from-blue-400 to-blue-600': progress() < 100,
+                        'bg-gradient-to-r from-green-400 to-green-600': progress() === 100
+                      }"
+                            [style.width.%]="progress()"
+                        >
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <!-- Mensajes de estado detallados -->
+                <div
+                    class="mt-4 p-3 rounded-lg"
+                    [ngClass]="{
+                'bg-blue-50 border border-blue-200': currentStatus() === 'preparing',
+                'bg-orange-50 border border-orange-200': currentStatus() === 'uploading', 
+                'bg-green-50 border border-green-200': currentStatus() === 'completed',
+                'bg-gray-50 border border-gray-200': currentStatus() === 'idle'
+              }"
+                >
+                    <div class="flex items-center text-sm">
+                        <span class="mr-2">{{ getStatusIcon() }}</span>
+                        <span class="font-medium">{{ getStatusMessage() }}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>

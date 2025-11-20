@@ -1,0 +1,42 @@
+<div class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-800 text-white p-8 rounded-2xl shadow-2xl m-8">
+    <div class="flex items-center space-x-4 mb-4">
+        <!-- Icono dinámico según la heurística -->
+        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            <span class="text-2xl">{{ getIcon() }}</span>
+        </div>
+
+        <!-- Información principal -->
+        <div class="flex-1">
+            <h1 class="text-3xl font-bold mb-2 tracking-tight">
+                {{ titulo() }}
+            </h1>
+            <div class="flex items-center space-x-2 text-blue-100">
+                <span class="w-2 h-2 bg-blue-300 rounded-full"></span>
+                <span class="text-sm font-medium uppercase tracking-wider">
+                    Heurística {{ numeroHeuristica() }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Concepto -->
+    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20">
+        <h3 class="text-lg font-semibold mb-3 text-blue-500">📖 Concepto:</h3>
+        <p class="text-black leading-relaxed">
+            {{ concepto() }}
+        </p>
+    </div>
+
+    <!-- Badges informativos -->
+    <div class="flex flex-wrap gap-2 mt-6">
+        <span class="px-3 py-1 bg-green-500 bg-opacity-80 rounded-full text-xs font-semibold">
+            Nielsen Heuristic
+        </span>
+        <span class="px-3 py-1 bg-blue-500 bg-opacity-80 rounded-full text-xs font-semibold">
+            UX Best Practice
+        </span>
+        <span class="px-3 py-1 bg-purple-500 bg-opacity-80 rounded-full text-xs font-semibold">
+            Angular + Tailwind
+        </span>
+    </div>
+</div>
