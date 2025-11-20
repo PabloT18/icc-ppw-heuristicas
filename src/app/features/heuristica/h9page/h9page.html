@@ -1,5 +1,60 @@
 <app-header-heuristica
     numeroHeuristica="9"
-    titulo="Ayuda a los usuarios a reconocer, diagnosticar y recuperarse de los errores"
-    concepto="Los mensajes de error deben expresarse en lenguaje claro (sin códigos), indicar con precisión el problema y sugerir una solución constructiva"
+    titulo="Reconocer, Diagnosticar y Recuperarse de Errores"
+    concepto="El sistema debe ayudar al usuario a entender qué ocurrió, qué causó el error y cómo solucionarlo, usando mensajes claros, no técnicos, y con acciones de recuperación visibles.."
 ></app-header-heuristica>
+
+
+<!-- Contenedor responsive para las dos secciones -->
+<div class="container mx-auto px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Sección: Ejemplo Malo -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-red-600 mb-2 text-center">❌ Ejemplo Malo</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+                    <ul class="list-disc list-inside ">
+
+                        <li>Muestra un mensaje técnico que el usuario no puede interpretar.</li>
+                        <li>No explica qué ocurrió.</li>
+                        <li>No ofrece pasos para solucionar el error.</li>
+                        <li>No permite recuperación (no hay botón de reintentar, ni ayuda, ni guía visual).</li>
+                        <li>Tono negativo y poco informativo.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-red-200">
+
+                <app-heuristica-malo></app-heuristica-malo>
+            </div>
+        </section>
+
+        <!-- Sección: Ejemplo Bueno -->
+        <section class="w-full">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-green-600 mb-2 text-center">✅ Heurística Aplicada</h2>
+
+                <div class="text-gray-600 text-center text-sm">
+
+
+                    <ul class="list-disc list-inside ">
+                        <li>Ayuda contextual: qué ocurrió, por qué, cómo solucionarlo.</li>
+                        <li>Opciones de recuperación: reintentar, ver contraseña, restaurar cuenta.</li>
+                        <li>Validación en tiempo real para evitar errores antes de ocurrir.</li>
+                        <li>Estados visuales con TailwindCSS: rojo suave, borde destacado, íconos guía.</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-green-200">
+
+
+                <app-heuristica-bueno></app-heuristica-bueno>
+            </div>
+        </section>
+
+    </div>
+</div>
